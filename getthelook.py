@@ -7,9 +7,11 @@ from optparse import OptionParser
 from selenium import webdriver
 
 class Look(object):
+
     def __init__(self):
         self.drivers = {
-            'firefox': webdriver.Firefox
+            'firefox': webdriver.Firefox,
+            'chrome': webdriver.Chrome
         }
 
     def look(self, drivers, urls, options):
@@ -39,7 +41,7 @@ class Look(object):
                 filename = '-'.join([self.clean_filename(url), driver])
                 filename = os.path.join(dir_name, filename + '.png')
                 print 'saving %s' % filename
-                browser.save_screenshot(filename)
+                browser.get_screenshot_as_file(filename)
             browser.close()
 
     def clean_filename(self, filename):
